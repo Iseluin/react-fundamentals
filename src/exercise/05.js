@@ -18,16 +18,16 @@ import '../box-styles.css'
 // const mediumBox = <div className='box box--medium' style={{backgroundColor: 'pink'}}>medium pink box</div>
 // const largeBox = <div className='box box--large' style={{backgroundColor: 'orange'}}>large orange box</div>
 
-const Box = ({style, className,...rest}) => {
-  return <div style={{fontStyle:'italic', ...style}} className={`box ${className}`}{...rest}></div>
+const Box = ({style,size, ...rest}) => {
+  return <div style={{fontStyle:'italic', ...style}} className={`box box--${size}`}{...rest}></div>
 }
 
 function App() {
   return (
     <div>
-      <Box style={{backgroundColor:'lightblue'}} className='box--small' > small lightblue box</Box>
-      <Box style={{backgroundColor:'pink'}} className='box--medium'>medium pink box</Box>
-      <Box style={{backgroundColor:'orange'}} className='box--large'>large orange box</Box>
+      <Box style={{backgroundColor:'lightblue'}} size='small' > small lightblue box</Box>
+      <Box style={{backgroundColor:'pink'}} size='medium'>medium pink box</Box>
+      <Box style={{backgroundColor:'orange'}} size='large'>large orange box</Box>
     </div>
   )
 }
