@@ -11,6 +11,26 @@
   const Message = ({subject, greeting}) => {
     return <div className="message">{greeting}, {subject}</div>
   }
+
+  const PropTypes = {
+    exists(props, propName, componentName) {
+      if((!props[propName])){
+        return new Error(`This ${propName} prop needs to exist.`)
+      }
+    },
+    string(props, propName, componentName) {
+      if(typeof props[propName] !== 'string'){
+        return new Error (`This ${propName} needs to be a string to be accepted in the ${componentName}, but you passed a ${typeof props[propName]} instead.`)
+      }
+    }
+  }
+
+  Message.propTypes = {
+    subject: PropTypes.exists,
+    subject: PropTypes.string,
+    greeting: PropTypes.string,
+    greeting: PropTypes.exists,
+  }
     // 🐨 use that function in place of the divs below with:
     // 💰 {message({children: 'Hello World'})} {message({children: 'Goodbye World'})}
     const element = (
