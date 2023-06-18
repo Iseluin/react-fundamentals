@@ -9,7 +9,7 @@
     const rootElement = document.getElementById('root')
     const element = React.createElement('div', {
       className: 'container',
-      children: 'Hello World',
+      children: [React.createElement('span', Null, "Hello"), React.createElement('span', Null, "World")],
     })
     ReactDOM.createRoot(rootElement).render(element)
   </script>
