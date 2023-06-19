@@ -7,11 +7,20 @@ function UsernameForm({onSubmitUsername}) {
   // 🐨 add a submit event handler here (`handleSubmit`).
 
   const inputRef = React.useRef(null)
+  const [error, setError] = React.useState(null);
+  const [disable, setDisable] = React.useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const inputValue = inputRef.current.value
     onSubmitUsername(inputValue)
+  }
+
+  const handleChange = (e) => {
+    const changedValue = e.target.value;
+    const isValid = changedValue === changedValue.toLowerCase();
+    setError(isValid ? null : "Username must be lowercase")
+    setDisable(isValid ? false : true)
   }
   // 💰 Make sure to accept the `event` as an argument and call
   // `event.preventDefault()` to prevent the default behavior of form submit
@@ -31,7 +40,8 @@ function UsernameForm({onSubmitUsername}) {
     <form onSubmit={handleSubmit}>
       <div>
         <label htmlFor ='input-text'>Username:</label>
-        <input id = "input-text" type ="text" ref={inputRef} />
+        <input onChange={handleChange} id = "input-text" type ="text" ref={inputRef} disabled={disable} />
+        <div>{error}</div>
       </div>
       <button type="submit">Submit</button>
     </form>
